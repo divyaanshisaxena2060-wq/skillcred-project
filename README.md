@@ -54,8 +54,6 @@ details and generate a self-contained, downloadable HTML portfolio page.
    - `ALLOWED_ORIGINS` — optional, comma-separated list of allowed CORS origins
      for `/api/*` routes. Defaults to `*` (all origins).
 
-   > ⚠️ **Never commit your `.env` file.** If a key has ever been shared or
-   > exposed, rotate it immediately in Google AI Studio.
 
 3. **Run the app:**
 
