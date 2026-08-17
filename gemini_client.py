@@ -86,4 +86,3 @@ Resume:
 
     except Exception as e:
         raise GenerationError(f"Gemini API error: {e}")
-

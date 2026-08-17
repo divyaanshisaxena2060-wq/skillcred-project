@@ -60,5 +60,5 @@ def extract_text(filename, file_bytes):
 
     except Exception as e:
         raise ExtractionError(
-            f"Error extracting resume text: {e}"
+            f"Error extracting resume text is: {e}"
         )
