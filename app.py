@@ -7,7 +7,11 @@ from dotenv import load_dotenv
 
 from extraction import extract_text, ExtractionError
 from gemini_client import resume_text_to_portfolio_data, GenerationError
-from template import build_portfolio_html
+from template import (
+    build_portfolio_html,
+    get_available_templates,
+    get_sample_portfolio_data,
+)
 
 load_dotenv()
 
@@ -24,12 +28,32 @@ CORS(app, resources={r"/api/*": {"origins": origins}})
 @app.get("/")
 def home():
     return send_from_directory(".", "index.html")
+
 ALLOWED_EXTENSIONS = (".pdf", ".txt")
 
 
 @app.get("/api/health")
 def health():
-    return jsonify({"status": "ok", "gemini_key_configured": bool(os.environ.get("GEMINI_API_KEY"))})
+    return jsonify({
+        "status": "ok",
+        "gemini_key_configured": bool(os.environ.get("GEMINI_API_KEY")),
+        "template_count": len(get_available_templates())
+    })
+
+
+@app.get("/api/templates")
+def list_templates():
+    return jsonify({
+        "templates": get_available_templates()
+    })
+
+
+@app.get("/api/preview")
+def preview_template():
+    theme = request.args.get("theme", "midnight_aurora")
+    sample_data = get_sample_portfolio_data()
+    html = build_portfolio_html(sample_data, theme=theme)
+    return Response(html, mimetype="text/html")
 
 
 @app.post("/api/generate")
@@ -39,6 +63,7 @@ def generate_portfolio():
 
     file = request.files["resume"]
     filename = file.filename or ""
+    theme = request.form.get("theme", "midnight_aurora")
 
     if not filename.lower().endswith(ALLOWED_EXTENSIONS):
         return jsonify({"error": "Only .pdf and .txt files are supported."}), 400
@@ -61,8 +86,8 @@ def generate_portfolio():
         logger.error("Gemini generation failed: %s", exc)
         return jsonify({"error": str(exc)}), 502
 
-    # 3. Render the structured data into a self-contained HTML portfolio
-    html = build_portfolio_html(portfolio_data)
+    # 3. Render the structured data into a self-contained HTML portfolio with the chosen theme
+    html = build_portfolio_html(portfolio_data, theme=theme)
 
     return Response(
         html,
