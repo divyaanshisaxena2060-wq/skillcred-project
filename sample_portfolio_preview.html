@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jane Doe — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --bg:#060911; --bg-elevated:#0d1220; --border:rgba(255,255,255,0.09);
+  --border-strong:rgba(255,255,255,0.16); --text-primary:#f5f7fa;
+  --text-muted:#8b95a7; --text-faint:#5a637a;
+  --green:#39ff9d; --teal:#22d3ee; --violet:#8b5cf6;
+  --font-display:'Space Grotesk',sans-serif; --font-body:'Inter',sans-serif;
+  --font-mono:'JetBrains Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text-primary);font-family:var(--font-body);overflow-x:hidden;line-height:1.6;}
+a{color:inherit;text-decoration:none;}
+::selection{background:var(--green);color:#04140c;}
+.container{max-width:960px;margin:0 auto;padding:0 32px;position:relative;z-index:1;}
+.aurora-field{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;}
+.ribbon{position:absolute;border-radius:50%;filter:blur(90px);opacity:0.45;mix-blend-mode:screen;}
+.ribbon-1{width:55vw;height:55vw;top:-20vw;left:-15vw;background:radial-gradient(circle,var(--green),transparent 65%);animation:drift1 26s ease-in-out infinite;}
+.ribbon-2{width:45vw;height:45vw;top:-10vw;right:-15vw;background:radial-gradient(circle,var(--teal),transparent 65%);animation:drift2 32s ease-in-out infinite;}
+.ribbon-3{width:50vw;height:50vw;top:20vw;left:25vw;background:radial-gradient(circle,var(--violet),transparent 65%);animation:drift3 29s ease-in-out infinite;opacity:0.3;}
+@keyframes drift1{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(8vw,6vw) scale(1.1);}}
+@keyframes drift2{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-7vw,8vw) scale(1.08);}}
+@keyframes drift3{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-5vw,-6vw) scale(1.12);}}
+@media (prefers-reduced-motion: reduce){*{animation-duration:0.01ms !important;}}
+header{position:sticky;top:0;z-index:50;backdrop-filter:blur(16px);background:rgba(6,9,17,0.65);border-bottom:1px solid var(--border);}
+nav{display:flex;align-items:center;justify-content:space-between;padding:20px 32px;}
+.logo{font-family:var(--font-display);font-weight:600;font-size:17px;display:flex;align-items:center;gap:10px;}
+.logo-mark{width:30px;height:30px;border-radius:8px;background:conic-gradient(from 180deg,var(--green),var(--teal),var(--violet),var(--green));display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#04140c;flex-shrink:0;}
+.nav-links{display:flex;gap:28px;font-size:14px;color:var(--text-muted);}
+.nav-links a:hover{color:var(--text-primary);}
+@media (max-width:640px){.nav-links{display:none;}}
+.hero{padding:100px 0 70px;}
+.eyebrow{font-family:var(--font-mono);font-size:12.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--green);display:inline-flex;align-items:center;gap:8px;margin-bottom:24px;padding:6px 14px 6px 10px;border:1px solid rgba(57,255,157,0.25);border-radius:100px;background:rgba(57,255,157,0.06);}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);}
+h1{font-family:var(--font-display);font-size:clamp(36px,6vw,58px);font-weight:600;line-height:1.05;letter-spacing:-0.02em;background:linear-gradient(100deg,var(--green) 5%,var(--teal) 45%,var(--violet) 85%);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.hero-sub{margin-top:22px;font-size:17px;color:var(--text-muted);max-width:620px;}
+.contact-row{margin-top:32px;display:flex;flex-wrap:wrap;gap:12px 20px;font-family:var(--font-mono);font-size:13px;color:var(--text-muted);}
+.contact-row a:hover{color:var(--teal);}
+section{position:relative;z-index:1;padding:70px 0;border-top:1px solid var(--border);}
+.hero{border-top:none;}
+.section-label{font-family:var(--font-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);}
+h2{font-family:var(--font-display);font-size:clamp(24px,3.5vw,32px);font-weight:600;letter-spacing:-0.02em;margin-top:10px;margin-bottom:32px;}
+.pill-row{display:flex;flex-wrap:wrap;gap:10px;}
+.pill{padding:8px 16px;border:1px solid var(--border-strong);border-radius:100px;font-size:13.5px;color:var(--text-primary);background:rgba(255,255,255,0.02);}
+.timeline{display:flex;flex-direction:column;gap:36px;}
+.timeline-item{display:flex;gap:20px;}
+.timeline-marker{width:10px;height:10px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green);margin-top:8px;flex-shrink:0;}
+.timeline-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px 16px;}
+.timeline-content h3{font-family:var(--font-display);font-size:18px;font-weight:600;}
+.timeline-date{font-family:var(--font-mono);font-size:12.5px;color:var(--text-faint);white-space:nowrap;}
+.timeline-content ul{margin-top:12px;padding-left:20px;color:var(--text-muted);font-size:14.5px;display:flex;flex-direction:column;gap:6px;}
+.project-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+@media (max-width:640px){.project-grid{grid-template-columns:1fr;}}
+.project-card{border:1px solid var(--border);border-radius:14px;padding:26px;background:rgba(255,255,255,0.02);transition:border-color 0.2s,transform 0.2s;}
+.project-card:hover{border-color:var(--border-strong);transform:translateY(-3px);}
+.project-card h3{font-family:var(--font-display);font-size:17px;font-weight:600;margin-bottom:10px;}
+.project-card p{color:var(--text-muted);font-size:14px;margin-bottom:14px;}
+.tag-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;}
+.tag{font-family:var(--font-mono);font-size:11px;color:var(--text-faint);border:1px solid var(--border);border-radius:6px;padding:3px 8px;}
+.project-link{font-size:13px;color:var(--teal);font-weight:600;}
+.edu-list{display:flex;flex-direction:column;gap:22px;}
+.edu-row{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px 16px;border-bottom:1px solid var(--border);padding-bottom:18px;}
+.edu-row h4{font-family:var(--font-display);font-size:16px;font-weight:600;}
+.edu-sub{display:block;color:var(--text-muted);font-size:13.5px;margin-top:4px;}
+footer{border-top:1px solid var(--border);padding:36px 0;position:relative;z-index:1;}
+.footer-row p{font-size:13px;color:var(--text-faint);}
+
+</style>
+</head>
+<body>
+
+<div class="aurora-field">
+  <div class="ribbon ribbon-1"></div>
+  <div class="ribbon ribbon-2"></div>
+  <div class="ribbon ribbon-3"></div>
+</div>
+
+<header>
+  <nav class="container">
+    <div class="logo"><span class="logo-mark">JD</span>Jane Doe</div>
+    <div class="nav-links">
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+    </div>
+  </nav>
+</header>
+
+<main class="container">
+
+  <section class="hero">
+    <span class="eyebrow"><span class="dot"></span>Senior Software Engineer</span>
+    <h1>Jane Doe</h1>
+    <p class="hero-sub">Backend-focused engineer with 6 years of experience building scalable systems.</p>
+    <div class="contact-row"><a href="mailto:jane@example.com">jane@example.com</a><span>(555) 123-4567</span><span>San Francisco, CA</span><a href="https://linkedin.com/in/janedoe" target="_blank" rel="noopener">LinkedIn ↗</a><a href="https://github.com/janedoe" target="_blank" rel="noopener">GitHub ↗</a></div>
+  </section>
+
+  
+  <section id="skills">
+    <span class="section-label">Skills</span>
+    <h2>What I work with</h2>
+    <div class="pill-row"><span class="pill">Python</span><span class="pill">JavaScript</span><span class="pill">React</span><span class="pill">AWS</span><span class="pill">PostgreSQL</span></div>
+  </section>
+  
+  <section id="experience">
+    <span class="section-label">Experience</span>
+    <h2>Where I've worked</h2>
+    <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-marker"></div>
+      <div class="timeline-content">
+        <div class="timeline-head">
+          <h3>Senior Software Engineer · Acme Corp</h3>
+          <span class="timeline-date">2022 - Present</span>
+        </div>
+        <ul><li>Led migration of core API to microservices</li><li>Mentored 4 junior engineers</li></ul>
+      </div>
+    </div></div>
+  </section>
+  
+  <section id="projects">
+    <span class="section-label">Projects</span>
+    <h2>Things I've built</h2>
+    <div class="project-grid">
+    <div class="project-card">
+      <h3>OpenTrack</h3>
+      <p>A self-hosted analytics tool.</p>
+      <div class="tag-row"><span class="tag">Python</span><span class="tag">Redis</span></div>
+      <a class="project-link" href="https://github.com/janedoe/opentrack" target="_blank" rel="noopener">View ↗</a>
+    </div></div>
+  </section>
+  
+  <section id="education">
+    <span class="section-label">Education</span>
+    <h2>Background</h2>
+    <div class="edu-list">
+      <div class="edu-row">
+        <div>
+          <h4>B.S. Computer Science</h4>
+          <span class="edu-sub">UC Berkeley</span>
+        </div>
+        <span class="timeline-date">2016 - 2020</span>
+      </div></div>
+    <div class="pill-row" style="margin-top:24px;"><span class="pill">AWS Certified Solutions Architect</span></div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container footer-row">
+    <p>Jane Doe — built with AI Portfolio Generator.</p>
+  </div>
+</footer>
+
+</body>
+</html>
