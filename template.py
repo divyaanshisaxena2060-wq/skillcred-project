@@ -551,14 +551,14 @@ footer {{
         </div>
     </header>
 
-    {"<section id='skills'><div class='section-label'>01 // Skills</div><h2 class='section-title'>Core Technologies</h2><div class='skills-container'>" + skills_html + "</div></section>" if skills_html else ""}
-    {"<section id='projects'><div class='section-label'>02 // Work</div><h2 class='section-title'>Selected Projects</h2><div class='projects-grid'>" + projects_html + "</div></section>" if projects_html else ""}
-    {"<section id='experience'><div class='section-label'>03 // Career</div><h2 class='section-title'>Work Experience</h2>" + experience_html + "</section>" if experience_html else ""}
-    {"<section id='education'><div class='section-label'>04 // Background</div><h2 class='section-title'>Education</h2>" + education_html + "</section>" if education_html else ""}
-    {"<section id='certifications'><div class='section-label'>05 // Accreditations</div><h2 class='section-title'>Certifications</h2>" + certs_html + "</section>" if certs_html else ""}
+    {"<section id='skills'><div class='section-label'>Skills</div><h2 class='section-title'>Core Technologies</h2><div class='skills-container'>" + skills_html + "</div></section>" if skills_html else ""}
+    {"<section id='projects'><div class='section-label'>Work</div><h2 class='section-title'>Selected Projects</h2><div class='projects-grid'>" + projects_html + "</div></section>" if projects_html else ""}
+    {"<section id='experience'><div class='section-label'>Career</div><h2 class='section-title'>Work Experience</h2>" + experience_html + "</section>" if experience_html else ""}
+    {"<section id='education'><div class='section-label'>Background</div><h2 class='section-title'>Education</h2>" + education_html + "</section>" if education_html else ""}
+    {"<section id='certifications'><div class='section-label'>Accreditations</div><h2 class='section-title'>Certifications</h2>" + certs_html + "</section>" if certs_html else ""}
 
     <section id="contact" class="contact-section">
-        <div class="section-label">06 // Connect</div>
+        <div class="section-label">Connect</div>
         <h2 class="section-title">Let's Build Something Together</h2>
         <div class="contact-info">
             {f'<div>Email: <a href="mailto:{d["email"]}" style="color:#22d3ee;text-decoration:none;">{d["email"]}</a></div>' if d["email"] else ''}
@@ -1477,18 +1477,18 @@ footer {{
             </div>
         </div>
 
-        {"<div class='term-section' id='skills'><div class='term-sec-head'>// 02. STACK &amp; CAPABILITIES</div><div class='term-cmd'><span class='prompt'>$</span> cat ./skills.json</div><pre class='json-display'>" + skills_json + "</pre></div>" if d["skills"] else ""}
+        {"<div class='term-section' id='skills'><div class='term-sec-head'>STACK &amp; CAPABILITIES</div><div class='term-cmd'><span class='prompt'>$</span> cat ./skills.json</div><pre class='json-display'>" + skills_json + "</pre></div>" if d["skills"] else ""}
 
-        {"<div class='term-section' id='projects'><div class='term-sec-head'>// 03. REPOSITORIES &amp; PROJECTS</div>" + projects_cli + "</div>" if projects_cli else ""}
+        {"<div class='term-section' id='projects'><div class='term-sec-head'>REPOSITORIES &amp; PROJECTS</div>" + projects_cli + "</div>" if projects_cli else ""}
 
-        {"<div class='term-section' id='experience'><div class='term-sec-head'>// 04. EXPERIENCE LOGS</div>" + experience_cli + "</div>" if experience_cli else ""}
+        {"<div class='term-section' id='experience'><div class='term-sec-head'>EXPERIENCE LOGS</div>" + experience_cli + "</div>" if experience_cli else ""}
 
-        {"<div class='term-section' id='education'><div class='term-sec-head'>// 05. ACADEMIC RECORDS</div>" + education_cli + "</div>" if education_cli else ""}
+        {"<div class='term-section' id='education'><div class='term-sec-head'>ACADEMIC RECORDS</div>" + education_cli + "</div>" if education_cli else ""}
 
-        {"<div class='term-section' id='certifications'><div class='term-sec-head'>// 06. CERTIFICATIONS</div>" + certs_cli + "</div>" if certs_cli else ""}
+        {"<div class='term-section' id='certifications'><div class='term-sec-head'>CERTIFICATIONS</div>" + certs_cli + "</div>" if certs_cli else ""}
 
         <div class="term-section" id="contact">
-            <div class="term-sec-head">// 07. TRANSMIT MESSAGE</div>
+            <div class="term-sec-head">TRANSMIT MESSAGE</div>
             <div class="term-cmd"><span class="prompt">$</span> ./ping_contact.sh</div>
             <div class="term-output">
                 {f'<p class="cyan">EMAIL: {d["email"]}</p>' if d["email"] else ''}
