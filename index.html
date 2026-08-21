@@ -236,6 +236,28 @@
     align-items: center;
     gap: 12px;
   }
+  /* ---------- Dark / Light Mode Toggle ---------- */
+
+.theme-toggle {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid #334155;
+  background: #172033;
+  color: #FFD43B;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 20px;
+  transition: all 0.25s ease;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.08);
+  background: #25324A;
+  border-color: #FFD43B;
+}
 
   .nav-action {
     background: var(--acid-lime);
@@ -1248,6 +1270,9 @@
     </div>
 
     <div class="nav-right-controls">
+      <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
+  <span id="themeIcon">☀️</span>
+</button>
       <a href="#templates" class="nav-action">
         Pick Template
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -1318,7 +1343,7 @@
     <div class="templates-grid" id="templatesGrid">
 
       <!-- 1. Midnight Aurora -->
-      <div class="theme-card active" data-theme-id="midnight_aurora" style="--card-accent:#49af7c; --card-highlight:rgba(57,255,157,0.2);">
+      <div class="theme-card active" data-theme-id="midnight_aurora" style="--card-accent:#22925a; --card-highlight:rgba(170, 239, 205, 0.2);">
         <div class="theme-select-indicator">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
         </div>
@@ -1695,6 +1720,42 @@
   let currentFile = null;
   let generatedHtml = null;
   let modalThemeId = 'midnight_aurora';
+
+  // ---------- Dark / Light Mode ----------
+
+const themeToggle = document.getElementById('themeToggle');
+const themeIcon = document.getElementById('themeIcon');
+
+function setColorTheme(theme) {
+  document.documentElement.setAttribute('data-bg-theme', theme);
+
+  if (theme === 'charcoal') {
+    themeIcon.textContent = '☀️';
+  } else {
+    themeIcon.textContent = '🌙';
+  }
+
+  localStorage.setItem('colorTheme', theme);
+}
+
+const savedTheme = localStorage.getItem('colorTheme');
+
+if (savedTheme) {
+  setColorTheme(savedTheme);
+} else {
+  setColorTheme('cream');
+}
+
+themeToggle.addEventListener('click', () => {
+  const currentTheme =
+    document.documentElement.getAttribute('data-bg-theme');
+
+  if (currentTheme === 'cream') {
+    setColorTheme('charcoal');
+  } else {
+    setColorTheme('cream');
+  }
+});
 
   // ---------- Elements ----------
   const themeCards = document.querySelectorAll('.theme-card');
